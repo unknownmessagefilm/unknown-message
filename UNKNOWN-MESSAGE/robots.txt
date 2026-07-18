@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://unknownmessagefilm.github.io/unknown-message/sitemap.xml
