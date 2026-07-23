@@ -1,195 +1,184 @@
-// ===============================
-// UNKNOWN MESSAGE
-// Official Website Script
-// ===============================
+// ==========================================
+// UNKNOWN MESSAGE - Official Website
+// script.js
+// ==========================================
 
-// Release Date
-const releaseDate = new Date("July 24, 2026 19:08:00").getTime();
+// Navbar Active Link
 
-const days = document.getElementById("days");
-const hours = document.getElementById("hours");
-const minutes = document.getElementById("minutes");
-const seconds = document.getElementById("seconds");
+const navLinks = document.querySelectorAll("nav a");
 
-const countdown = setInterval(function(){
+navLinks.forEach(link => {
 
-const now = new Date().getTime();
+    link.addEventListener("click", () => {
 
-const distance = releaseDate - now;
+        navLinks.forEach(item => item.classList.remove("active"));
 
-if(distance <= 0){
+        link.classList.add("active");
 
-clearInterval(countdown);
-
-document.getElementById("countdown").innerHTML=`
-
-<h2 style="color:#ff2a2a">
-
-🎬 NOW STREAMING
-
-</h2>
-
-<a
-
-class="btn"
-
-href="https://youtu.be/mZIXCPlwgiw"
-
-target="_blank">
-
-▶ WATCH FULL MOVIE
-
-</a>
-
-`;
-
-return;
-
-}
-
-days.innerHTML=Math.floor(distance/(1000*60*60*24));
-
-hours.innerHTML=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-
-minutes.innerHTML=Math.floor((distance%(1000*60*60))/(1000*60));
-
-seconds.innerHTML=Math.floor((distance%(1000*60))/1000);
-
-},1000);
-
-
-// Navbar Active
-
-const links=document.querySelectorAll("nav a");
-
-links.forEach(link=>{
-
-link.addEventListener("click",()=>{
-
-links.forEach(a=>a.classList.remove("active"));
-
-link.classList.add("active");
-
-});
+    });
 
 });
 
 
 // Fade Animation
 
-const sections=document.querySelectorAll("section");
+const sections = document.querySelectorAll("section");
 
-const observer=new IntersectionObserver((entries)=>{
+const observer = new IntersectionObserver((entries) => {
 
-entries.forEach(entry=>{
+    entries.forEach(entry => {
 
-if(entry.isIntersecting){
+        if(entry.isIntersecting){
 
-entry.target.style.opacity="1";
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0px)";
 
-entry.target.style.transform="translateY(0px)";
+        }
 
-}
+    });
+
+},{
+    threshold:0.2
+});
+
+sections.forEach(section => {
+
+    section.style.opacity = "0";
+    section.style.transform = "translateY(60px)";
+    section.style.transition = ".8s ease";
+
+    observer.observe(section);
 
 });
 
-});
 
-sections.forEach(sec=>{
+// Gallery Popup
 
-sec.style.opacity="0";
+const images = document.querySelectorAll(".gallery img");
 
-sec.style.transform="translateY(60px)";
+images.forEach(img => {
 
-sec.style.transition=".8s";
+    img.addEventListener("click", () => {
 
-observer.observe(sec);
+        const popup = document.createElement("div");
 
-});
+        popup.style.position = "fixed";
+        popup.style.top = "0";
+        popup.style.left = "0";
+        popup.style.width = "100%";
+        popup.style.height = "100%";
+        popup.style.background = "rgba(0,0,0,.95)";
+        popup.style.display = "flex";
+        popup.style.justifyContent = "center";
+        popup.style.alignItems = "center";
+        popup.style.cursor = "pointer";
+        popup.style.zIndex = "9999";
 
+        const image = document.createElement("img");
 
-// Gallery Zoom
+        image.src = img.src;
+        image.style.maxWidth = "90%";
+        image.style.maxHeight = "90%";
+        image.style.borderRadius = "10px";
+        image.style.boxShadow = "0 0 35px red";
 
-document.querySelectorAll(".gallery img").forEach(img=>{
+        popup.appendChild(image);
 
-img.addEventListener("click",()=>{
+        popup.onclick = () => popup.remove();
 
-const popup=document.createElement("div");
+        document.body.appendChild(popup);
 
-popup.style.position="fixed";
-popup.style.top="0";
-popup.style.left="0";
-popup.style.width="100%";
-popup.style.height="100%";
-popup.style.background="rgba(0,0,0,.95)";
-popup.style.display="flex";
-popup.style.justifyContent="center";
-popup.style.alignItems="center";
-popup.style.zIndex="99999";
-
-const image=document.createElement("img");
-
-image.src=img.src;
-image.style.maxWidth="90%";
-image.style.maxHeight="90%";
-image.style.borderRadius="10px";
-image.style.boxShadow="0 0 25px red";
-
-popup.appendChild(image);
-
-popup.onclick=()=>popup.remove();
-
-document.body.appendChild(popup);
-
-});
+    });
 
 });
 
 
 // Scroll To Top Button
 
-const topBtn=document.createElement("button");
+const topBtn = document.createElement("button");
 
-topBtn.innerHTML="⬆";
+topBtn.innerHTML = "⬆";
 
-topBtn.style.position="fixed";
-topBtn.style.right="20px";
-topBtn.style.bottom="20px";
-topBtn.style.width="50px";
-topBtn.style.height="50px";
-topBtn.style.border="none";
-topBtn.style.borderRadius="50%";
-topBtn.style.background="#ff2a2a";
-topBtn.style.color="#fff";
-topBtn.style.fontSize="20px";
-topBtn.style.cursor="pointer";
-topBtn.style.display="none";
-topBtn.style.zIndex="9999";
+topBtn.style.position = "fixed";
+topBtn.style.bottom = "20px";
+topBtn.style.right = "20px";
+topBtn.style.width = "50px";
+topBtn.style.height = "50px";
+topBtn.style.border = "none";
+topBtn.style.borderRadius = "50%";
+topBtn.style.background = "#ff2a2a";
+topBtn.style.color = "#fff";
+topBtn.style.fontSize = "20px";
+topBtn.style.cursor = "pointer";
+topBtn.style.display = "none";
+topBtn.style.transition = ".3s";
+topBtn.style.zIndex = "999";
 
 document.body.appendChild(topBtn);
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-if(window.scrollY>400){
+    if(window.scrollY > 300){
 
-topBtn.style.display="block";
+        topBtn.style.display = "block";
 
-}else{
+    }else{
 
-topBtn.style.display="none";
+        topBtn.style.display = "none";
+
+    }
+
+});
+
+topBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+
+        top:0,
+        behavior:"smooth"
+
+    });
+
+});
+
+
+// Hero Poster Animation
+
+const poster = document.querySelector(".hero-poster");
+
+if(poster){
+
+    setInterval(() => {
+
+        poster.style.transform = "scale(1.03)";
+
+        setTimeout(() => {
+
+            poster.style.transform = "scale(1)";
+
+        },800);
+
+    },3000);
 
 }
 
-});
 
-topBtn.onclick=()=>{
+// Watch Button Glow
 
-window.scrollTo({
+const watchBtn = document.querySelector(".watch-btn");
 
-top:0,
+if(watchBtn){
 
-behavior:"smooth"
+    setInterval(() => {
 
-});
+        watchBtn.style.boxShadow = "0 0 40px red";
 
-};
+        setTimeout(() => {
+
+            watchBtn.style.boxShadow = "0 0 20px red";
+
+        },700);
+
+    },1800);
+
+}
