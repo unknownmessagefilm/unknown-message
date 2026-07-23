@@ -342,3 +342,51 @@ text-align:center;
 }
 
 }
+.watch-section{
+    text-align:center;
+    padding:80px 20px;
+}
+
+.watch-poster{
+    width:340px;
+    max-width:90%;
+    border-radius:15px;
+    box-shadow:0 0 30px rgba(255,255,255,.15);
+    transition:.4s;
+}
+
+.watch-poster:hover{
+    transform:scale(1.03);
+}
+
+.watch-section h2{
+    margin-top:25px;
+    font-size:45px;
+    color:#ffffff;
+    letter-spacing:2px;
+}
+
+.tagline{
+    color:#cfcfcf;
+    font-size:20px;
+    margin-bottom:35px;
+}
+
+.watch-btn{
+    display:inline-block;
+    background:#ff0000;
+    color:#fff;
+    text-decoration:none;
+    padding:18px 45px;
+    font-size:22px;
+    font-weight:bold;
+    border-radius:50px;
+    transition:.3s;
+    box-shadow:0 0 20px rgba(255,0,0,.6);
+}
+
+.watch-btn:hover{
+    background:#d60000;
+    transform:scale(1.08);
+    box-shadow:0 0 35px rgba(255,0,0,.9);
+}
